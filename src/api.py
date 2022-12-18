@@ -7,17 +7,11 @@ class Api:
     CLIENT_SECRET = None
     CODE_URL = "https://allegro.pl/auth/oauth/device"
     TOKEN_URL = "https://allegro.pl/auth/oauth/token"
-    THREADS_URL = "https://api.allegro.pl/messaging/threads"
-    MESSAGES_URL = "https://api.allegro.pl/messaging/messages"
     access_token = None
     
     def __init__(self, client_id, client_secret):
         self.CLIENT_ID = client_id
         self.CLIENT_SECRET = client_secret
-        result = self.get_code()
-        # Need to change this to GUI
-        print(result['verification_uri_complete'])
-        self.await_for_access_token(int(result['interval']), result['device_code'])
     
     def get_code(self):
         try:
