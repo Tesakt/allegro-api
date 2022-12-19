@@ -1,6 +1,8 @@
 import requests
 import json
 
+
+
 class Messages:
     access_token = None
     notice = "Dziękujemy za kontakt. W tej chwili niestety nie jesteśmy w stanie odpowiedzieć na Państwa pytanie od ręki. Osoba odpowiedzialna za obsługę klientów jest obecnie zajęta innymi sprawami, ale postaramy się odpisać jak najszybciej. Prosimy o cierpliwość. W razie pilnej potrzeby, prosimy o kontakt pod numerem infolinii. Dziękujemy za zrozumienie i pozdrawiamy serdecznie."
