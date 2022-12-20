@@ -18,8 +18,7 @@ class Scheduler:
             return now.hour <= 8 or now.hour >= 17
 
     def main(self):
-        while True:
-            if self.check_time():
-                self.Message_manager.get_list_of_threads()
-                self.Message_manager.check_new_messages()
-            time.sleep(self.update_period)
+        if self.check_time():
+            self.Message_manager.get_list_of_threads()
+            self.Message_manager.check_new_messages()
+        time.sleep(self.update_period)
