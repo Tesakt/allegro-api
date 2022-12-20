@@ -20,9 +20,21 @@ class Api:
             api_call_response = requests.post(self.CODE_URL, auth=(self.CLIENT_ID, self.CLIENT_SECRET),
                                             headers=headers, data=payload, verify=False)
             result = json.loads(api_call_response.text)
+            print(result['verification_uri_complete'])
             return result
         except requests.exceptions.HTTPError as err:
             raise SystemExit(err)
+        
+    def check_token(self):
+        try:
+            with open('token.json', 'r') as token_file:
+                token = json.load(token_file)
+            self.access_token = token['access_token']
+            if time.time() - token['current_time'] > token['expires_in']:
+                return False
+            return True
+        except IOError:
+            return False
     
     def get_access_token(self, device_code):
         try:
@@ -46,4 +58,8 @@ class Api:
                     break
             else:
                 self.access_token = token['access_token']
+                token['current_time'] = time.time()
+                with open('token.json', 'w') as outfile:
+                    # add current time to access token file
+                    json.dump(token, outfile)
                 return
