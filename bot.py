@@ -13,6 +13,7 @@ def main():
     update_period = 60
     
     while True:
+        # Validate access token
         if API.check_token() == False:
             result = API.get_code()
             API.await_for_access_token(int(result['interval']), result['device_code'])
