@@ -22,7 +22,7 @@ class Api:
             headers = {
                 'Content-type': 'application/x-www-form-urlencoded'
             }
-            api_call_response = requests.post(self.CODE_URL, auth=(self.CLIENT_ID, self.CLIENT_SECRET), headers=headers, data=payload, verify=False)
+            api_call_response = requests.post(self.CODE_URL, auth=(self.CLIENT_ID, self.CLIENT_SECRET), headers=headers, data=payload, verify=True)
             result = json.loads(api_call_response.text)
             print(result['verification_uri_complete'])
             return result
@@ -49,7 +49,7 @@ class Api:
                 'grant_type': 'urn:ietf:params:oauth:grant-type:device_code', 
                 'device_code': device_code
             }
-            api_call_response = requests.post(self.TOKEN_URL, auth=(self.CLIENT_ID, self.CLIENT_SECRET), headers=headers, data=data, verify=False)
+            api_call_response = requests.post(self.TOKEN_URL, auth=(self.CLIENT_ID, self.CLIENT_SECRET), headers=headers, data=data, verify=True)
             return api_call_response
         except requests.exceptions.HTTPError as err:
             raise SystemExit(err)

@@ -16,7 +16,7 @@ class Messages:
                 'Accept': 'application/vnd.allegro.public.v1+json', 
                 'Authorization': 'Bearer ' + self.access_token
             }
-            api_call_response = requests.get(self.THREADS_URL, headers=headers, verify=False)
+            api_call_response = requests.get(self.THREADS_URL, headers=headers, verify=True)
             api_call_response = json.loads(api_call_response.text)
             # Save threads to file
             with open('threads.json', 'w') as outfile:
@@ -33,7 +33,7 @@ class Messages:
                 'Content-Type': 'application/vnd.allegro.public.v1+json'
             }
             data = {"text": self.notice}
-            api_call_response = requests.post(self.THREADS_URL + thread_id + '/messages', headers=headers, json=data, verify=False)
+            api_call_response = requests.post(self.THREADS_URL + thread_id + '/messages', headers=headers, json=data, verify=True)
             return api_call_response
         except requests.exceptions.HTTPError as err:
             raise SystemExit(err)
